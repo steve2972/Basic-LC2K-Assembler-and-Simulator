@@ -15,3 +15,6 @@ gcc Simulator.c -o simulator
 ./simulator test.mc output[i].txt(optional)
 
 ```
+
+Test Cases Include the following:
+1) `
