@@ -165,6 +165,7 @@ int main(int argc, char *argv[]) {
 
         PC++;
     }
+    printf("Created Machine Code File\n");
 
     fclose(inFilePtr2);
     fclose(inFilePtr);
@@ -197,14 +198,11 @@ int readAndParse(FILE *inFilePtr, char *label,
         ptr += strlen(label);
     }
 
-    printf("label: %s\t", label);
-
     //Parse the rest of the line
 
     sscanf(ptr, "%*[\t\n\r ]%[^\t\n\r ]%*[\t\n\r ]%[^\t\n\r ]%*[\t\n\r "
                   "]%[^\t\n\r ]%*[\t\n\r ]%[^\t\n\r ]", opcode, arg0, arg1, arg2);
     
-    printf("args: %s %s %s %s\n", opcode, arg0, arg1, arg2);
     return 1;
 }
 
