@@ -1,5 +1,5 @@
 **LC2k Assembler & Simulator**
-Computer Architecture Project 1
+__Computer Architecture Project 1__
 
 Files in Project include:
 - Project1.c: Assembler Program
@@ -17,4 +17,3 @@ gcc Simulator.c -o simulator
 ```
 
 Test Cases Include the following:
-1) `
