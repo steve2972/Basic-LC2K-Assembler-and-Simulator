@@ -2,7 +2,7 @@
 
 *Computer Architecture Project 1*
 
-Files in Project include:
+Files in repository  include:
 - Project1.c: Assembler Program
 - Simulator.c: Simulator Program
 - test[i].as: Test programs - multiplying, adding, control flow, etc.
@@ -15,6 +15,20 @@ gcc Simulator.c -o simulator
 ./simulator test.mc output[i].txt(optional)
 
 ```
+
+A simple overview of the assembly and simulator programs:
+
+*Assembler*
+
+Takes in an assembly code file as an input, parses through the instructions,
+creates respective hexadecimal instructions, and writes the instructions onto 
+a machine code file.
+
+*Simulator*
+
+Using the machine code file genereated by the assembler program, the simulator prints out
+a step by step process of the computer carrying out the instructions written in the file. This includes
+a real time process of the instruction memory, the Program Counter, and any changes to the registry files.
 
 Test Cases Include the following:
 
