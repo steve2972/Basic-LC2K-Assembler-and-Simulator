@@ -41,3 +41,5 @@ Test Cases Include the following:
 4. test4 = 32766 * 10838
 
 5. test 5= 4 + summation(1...100) = 5054
+
+6. test 6 = error check: undefined label
