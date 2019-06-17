@@ -96,7 +96,6 @@ int main(int argc, char *argv[]) {
 	// initiate the computer
 	initState(state);
 
-	// Machine code to memory
 	for (state->numMemory = 0; fgets(line, MAXLINELENGTH, filePtr) != NULL;
 			state->numMemory++) {
 
@@ -120,22 +119,22 @@ int main(int argc, char *argv[]) {
 		fprintInstruction(state->instrMem[i], fileWrite);
 	}
 
-
-	/* Init machine finished*/
-
 	run(state, newState, fileWrite);
 }
 
 
 void run(stateType *state, stateType *newState, FILE *file) {
 	while (1) {
-		//printState(state);
+		fprintState(state, file);
 
-		/* check for halt */
+		// Check if halt
 		if (opcode(state->MEMWB.instr) == HALT) {
 			printf("machine halted\n");
+			fprintf(file, "machine halted\n");
 			printf("total of %d cycles executed\n", state->cycles);
-			fprintState(state, file);
+			fprintf(file, "total of %d cycles executed\n", state->cycles);
+			//fprintState(state, file);
+			//Uncomment this for simple version of PIPELINE
 			exit(0);
 		}
 
@@ -148,8 +147,7 @@ void run(stateType *state, stateType *newState, FILE *file) {
 		newState->IFID.pcPlus1 = newState->pc = state->pc+1;
 
 		// ID
-		if (isHazard(state)) {// If hazard occurs, buble current IDEX
-							  // and redo IF & ID at next cycle
+		if (isHazard(state)) {
 			newState->IFID.instr = state->IFID.instr;
 			newState->IFID.pcPlus1 = newState->pc = state->pc;
 			newState->IDEX.instr = NOOPINSTRUCTION;
@@ -163,7 +161,6 @@ void run(stateType *state, stateType *newState, FILE *file) {
 			newState->IDEX.pcPlus1 = state->IFID.pcPlus1;
 			newState->IDEX.readRegA = state->reg[field0(state->IFID.instr)];
 			newState->IDEX.readRegB = state->reg[field1(state->IFID.instr)];
-			// sign-extension is happening within ID stage
 			newState->IDEX.offset = convertNum(field2(state->IFID.instr));
 		}
 
